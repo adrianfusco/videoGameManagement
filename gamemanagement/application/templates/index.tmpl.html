@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>URL Shortener</title>
+        <meta name="afusco" content="SitePoint">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+    </head>
+    <body> 
+    	<main>
+            <form action="/" method="POST">
+                <h1 style="text-align: center;">URL Shortener</h1>
+                <input style="text-align: center;" type="text" id="input" name="url" placeholder="{{if not .longUrl}}Enter your URL here{{end}}{{ .longUrl }}"/>
+                <div class="buttons">
+                    <button id="shorten">Shorten your URL Link ;)</button>    
+                </div>
+            </form>
+            {{if .error}}
+                <main>
+                    <input style="text-align: center;" type="text" id="textShorten" name="url" placeholder="{{ .error }}">
+                </main>
+            {{end}}
+            {{if .shortUrl }}
+                <main>
+                    <input style="text-align: center;" type="text" id="textShorten" name="url" placeholder="{{ .shortUrl }}">
+                </main>
+            {{end}}
+        </main>
+    </body>
+</html>

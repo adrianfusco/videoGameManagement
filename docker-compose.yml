@@ -1,0 +1,25 @@
+version: "3"
+services:
+    gamemanagement:
+        build: .
+        hostname: gamemanagement
+        volumes:
+            - ./gamemanagement:/home/gamemanagement
+        ports: 
+            - 8080:8080
+        container_name: gamemanagement_go
+        tty: true
+    gamemanagement_db:
+        image: mysql:8.0
+        expose: 
+            - 3306
+        ports:
+            - 3306:3306
+        env_file: 
+            - gamemanagement/config/database.conf
+        container_name: gamemanagement_db_go
+        volumes:
+            # Don't lose MySQL data:
+            - ./mysql:/var/lib/mysql
+            # Import mysql when docker starts:
+            - ./gamemanagement.sql:/docker-entrypoint-initdb.d/dump.sql
